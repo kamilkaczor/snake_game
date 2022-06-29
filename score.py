@@ -17,9 +17,17 @@ class Score(Turtle):
         self.clear()
         self.write(f"Score = {self.score}", align="center", font=('Arial', 24, 'normal') )
 
-    def game_over(self):
+    def update(self):
         self.color("white")
         self.clear()
-        self.write("Game over", align="center", font=('Arial', 24, 'normal'))
-        self.goto(0,200)
-        self.write(f"Score = {self.score}", align="center", font=('Arial', 24, 'normal') )
+        self.write(f"Score = {self.score}, High score = {self.high_score}", align="center", font=('Arial', 24, 'normal') )
+
+    def get_highscore(self):
+        with open("highscore.txt", mode="r") as file:
+            self.high_score = int(file.read())
+
+    def save_highscore(self):
+        with open("highscore.txt", mode="w") as file:
+            if self.score > self.high_score:
+                self.high_score = self.score
+                file.write(str(self.high_score))

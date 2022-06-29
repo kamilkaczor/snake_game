@@ -4,6 +4,7 @@ from food import Food
 from score import Score
 import time
 
+
 screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
@@ -22,6 +23,7 @@ scoreboard = Score()
 
 
 while game_is_on:
+    scoreboard.get_highscore()
     screen.update()
     time.sleep(0.15)
     snake.snake_move(20)
@@ -30,12 +32,15 @@ while game_is_on:
         snake.add_segment()
         scoreboard.add_point()
 
+
     if snake.snakes[0].xcor() > 285 or snake.snakes[0].ycor() > 280 or snake.snakes[0].xcor() < -285 or snake.snakes[0].ycor() < -280:
-        scoreboard.game_over()
+        scoreboard.update()
         game_is_on = False
+        scoreboard.save_highscore()
     if snake.check_collision():
             game_is_on = False
-            scoreboard.game_over()
+            scoreboard.update()
+            scoreboard.save_highscore()
 
 screen.exitonclick()
 

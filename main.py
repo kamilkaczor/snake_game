@@ -23,7 +23,7 @@ scoreboard = Score()
 
 
 while game_is_on:
-    scoreboard.get_highscore()
+    scoreboard.get_high_score()
     screen.update()
     time.sleep(0.15)
     snake.snake_move(20)
@@ -36,11 +36,11 @@ while game_is_on:
     if snake.snakes[0].xcor() > 285 or snake.snakes[0].ycor() > 280 or snake.snakes[0].xcor() < -285 or snake.snakes[0].ycor() < -280:
         scoreboard.update()
         game_is_on = False
-        scoreboard.save_highscore()
+        scoreboard.save_high_score()
     if snake.check_collision():
             game_is_on = False
             scoreboard.update()
-            scoreboard.save_highscore()
+            scoreboard.save_high_score()
 
 screen.exitonclick()
 
